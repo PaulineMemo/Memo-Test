@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import datetime
+import matplotlib.plotly as plt
 
 # App title
 st.markdown('''
