@@ -1,9 +1,10 @@
 import streamlit as st
+import matplotlib.byplot as plt
 #import yfinance as yf
 import pandas as pd
 import plotly.express as px
 import datetime
-import matplotlib.byplot as plt
+
 
 # App title
 st.markdown('''
