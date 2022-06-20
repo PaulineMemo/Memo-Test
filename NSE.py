@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 #import plotly.express as px
 import datetime
+import seaborn as sn
 
 
 # App title
@@ -41,8 +42,9 @@ st.write(tickerDf)
 
 # Bollinger bands
 st.header('**Bollinger Bands**')
-#fig= px.line(tickerDf,title='First Quant Figure')
-st.plotly_chart(qf);
+st.title('Stock Price Analysis')
+fig=sns.lineplot(x='price', y='date', style='event', data="ticker_list')
+st.plot_line(fig);
 
 ####
 #st.write('---')
