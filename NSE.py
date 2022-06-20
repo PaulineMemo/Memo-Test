@@ -41,7 +41,7 @@ st.write(tickerDf)
 
 # Bollinger bands
 st.header('**Bollinger Bands**')
-fig= px.line(tickerDf,title='First Quant Figure')
+#fig= px.line(tickerDf,title='First Quant Figure')
 st.plotly_chart(qf);
 
 ####
