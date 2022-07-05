@@ -1,41 +1,39 @@
-import streamlit as st
-#import yfinance as yf
+import time
 import pandas as pd
-#import plotly.express as px
+import matplotlib.pyplot as plt
+import numpy as np
+import plotly.express as px
 import datetime
-import seaborn as sn
-import matplotlib.byplot as plt
+import plotly.graph_objects as go
+from dateutil.utils import today
+import streamlit as st
 
+st.set_page_config(
+    page_title="Nairobi Stock Exchange",
+    page_icon="Bar_graph",
+    layout="wide",
+    initial_sidebar_state="auto",
+)
+url=("https://raw.githubusercontent.com/regan-mu/ADS-April-2022/main/Assignments/Assignment%201/data.csv")
+stock_prices=pd.read_csv(url)
+stock_prices.head()
+st.sidebar.subheader('Query parameters')
+dropdown = st.sidebar.multiselect(
+    "Select one ticker:",
+    stock_prices["ticker"].unique()
+     )
 
-# App title
-st.markdown('''
-# Stock Price App
-Shown are the stock price data for query companies!
-**Credits**
-
-''')
-st.write('---')
-
-# Sidebar
 st.sidebar.subheader('Query parameters')
 start_date = st.sidebar.date_input("Start date", datetime.date(2020, 10, 16))
 end_date = st.sidebar.date_input("End date", datetime.date(2021, 1, 31))
 
-# Retrieving tickers data
-ticker_list = pd.read_csv('https://raw.githubusercontent.com/regan-mu/ADS-April-2022/main/Assignments/Assignment%201/data.csv')
-tickerSymbol = st.sidebar.multiselect('ticker', ticker_list) # Select ticker symbol
-tickerDf = ticker_list.history(period='1d', start=start_date, end=end_date) #get the historical prices for this ticker
+st.markdown("### Nairobi Stock Exchange")
+stock_prices
 
-# Ticker data
-st.header('**Ticker data**')
-st.write(ticker_list)
+stock_prices = pd.read_csv("https://raw.githubusercontent.com/regan-mu/ADS-April-2022/main/Assignments/Assignment%201/data.csv")
 
-# Bollinger bands
-st.header('**Bollinger Bands**')
-st.title('Stock Price Analysis')
-fig=sns.lineplot(x='price', y='date', style='event', data="ticker_list')
-st.plot_line(fig);
+x = stock_prices['date']
+y = stock_prices['price']
+fig = px.line(data_frame=stock_prices, y=y, x=x)
+st.plotly_chart(fig)
 
-####
-#st.write('---')
-#st.write(tickerData.info)
